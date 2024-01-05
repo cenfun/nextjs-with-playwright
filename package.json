@@ -1,0 +1,26 @@
+{
+    "name": "nextjs-with-playwright",
+    "type": "module",
+    "private": true,
+    "scripts": {
+        "dev": "next dev",
+        "build": "next build",
+        "start": "npm run clean && cross-env NODE_V8_COVERAGE=.v8-coverage next start",
+        "clean": "node ./scripts/clean.js",
+        "test": "playwright test"
+    },
+    "license": "MIT",
+    "dependencies": {
+        "next": "latest",
+        "react": "^18.2.0",
+        "react-dom": "^18.2.0"
+    },
+    "devDependencies": {
+        "@playwright/test": "^1.40.1",
+        "@types/node": "20.10.6",
+        "@types/react": "18.2.46",
+        "cross-env": "^7.0.3",
+        "monocart-reporter": "^2.1.1",
+        "typescript": "5.3.3"
+    }
+}
