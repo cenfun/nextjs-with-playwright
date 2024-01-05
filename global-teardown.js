@@ -1,8 +1,7 @@
 
-
 const globalTeardown = async (config) => {
-    console.log("globalTeardown ...")
-   
+    console.log('globalTeardown ...');
+
 
 };
 
