@@ -3,11 +3,12 @@ import { defineConfig, devices } from '@playwright/test';
 import { CoverageReportOptions } from 'monocart-reporter';
 
 const coverageReportOptions: CoverageReportOptions = {
-    logging: 'debug',
+    // logging: 'debug',
     name: 'Next.js V8 Coverage Report',
 
     entryFilter: (entry) => {
-        return entry.url.includes('next/static/chunks');
+        // both client side and server side
+        return entry.url.includes('next/static/chunks') || entry.url.includes('next/server/app');
     },
 
     sourceFilter: (sourcePath) => {
@@ -35,7 +36,7 @@ export default defineConfig({
     // Run your local dev server before starting the tests:
     // https://playwright.dev/docs/test-advanced#launching-a-development-web-server-during-the-tests
     webServer: {
-        command: 'npm run build && npm run start',
+        command: 'npm run test-start',
         url: baseURL,
         timeout: 120 * 1000,
         reuseExistingServer: !process.env.CI

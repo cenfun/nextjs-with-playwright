@@ -1,11 +1,16 @@
-export default {
+const nextConfig = {
+
     webpack: (config, options) => {
 
-        config.devtool = 'source-map';
-        config.optimization = {
-            minimize: false
-        };
+        Object.defineProperty(config, 'devtool', {
+            get() {
+                return 'source-map';
+            },
+            set() {}
+        });
 
         return config;
     }
 };
+
+export default nextConfig;

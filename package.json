@@ -5,8 +5,9 @@
     "scripts": {
         "dev": "next dev",
         "build": "next build",
-        "start": "npm run clean && cross-env NODE_V8_COVERAGE=.v8-coverage next start",
+        "start": "next start",
         "clean": "node ./scripts/clean.js",
+        "test-start": "npm run clean && cross-env NODE_V8_COVERAGE=.v8-coverage next dev",
         "test": "playwright test"
     },
     "license": "MIT",
@@ -19,6 +20,7 @@
         "@playwright/test": "^1.40.1",
         "@types/node": "20.10.6",
         "@types/react": "18.2.46",
+        "axios": "^1.6.4",
         "cross-env": "^7.0.3",
         "eslint": "^8.56.0",
         "eslint-config-next": "^14.0.4",
