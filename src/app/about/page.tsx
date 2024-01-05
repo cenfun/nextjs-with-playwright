@@ -1,6 +1,13 @@
 import Link from 'next/link';
 
-export default function Page() {
+import { request } from './actions';
+
+export default async function Page() {
+
+    const data = await request({
+        id: 1
+    });
+
     return (
         <div>
             <h1>About</h1>
@@ -8,6 +15,7 @@ export default function Page() {
             <p>
                 Page About
             </p>
+            <div>{ data }</div>
         </div>
     );
 }
