@@ -1,13 +1,14 @@
 {
     "name": "nextjs-with-playwright",
-    "type": "module",
     "private": true,
+    "type": "module",
     "scripts": {
         "dev": "next dev",
         "build": "next build",
         "start": "next start",
-        "clean": "node ./scripts/clean.js",
-        "test-start": "npm run clean && cross-env NODE_V8_COVERAGE=.v8-coverage next dev",
+        "clean": "cross-env NODE_V8_COVERAGE=.v8-coverage node ./scripts/clean.js",
+        "test:start": "cross-env NODE_V8_COVERAGE=.v8-coverage next dev",
+        "test:command": "npm run clean && npm run test:start",
         "test": "playwright test"
     },
     "license": "MIT",
@@ -20,7 +21,7 @@
         "@playwright/test": "^1.40.1",
         "@types/node": "20.10.6",
         "@types/react": "18.2.46",
-        "axios": "^1.6.4",
+        "axios": "^1.6.5",
         "cross-env": "^7.0.3",
         "eslint": "^8.56.0",
         "eslint-config-next": "^14.0.4",

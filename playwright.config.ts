@@ -36,9 +36,11 @@ export default defineConfig({
     // Run your local dev server before starting the tests:
     // https://playwright.dev/docs/test-advanced#launching-a-development-web-server-during-the-tests
     webServer: {
-        command: 'npm run test-start',
+        command: 'npm run test:command',
         url: baseURL,
         timeout: 120 * 1000,
+        stdout: 'pipe',
+        stderr: 'pipe',
         reuseExistingServer: !process.env.CI
     },
 

@@ -1,5 +1,7 @@
 import fs from 'fs';
-const dir = '.v8-coverage';
+
+const dir = process.env.NODE_V8_COVERAGE;
+
 // console.log(dir, fs.existsSync(dir))
 if (fs.existsSync(dir)) {
     console.log(`clean previous ${dir} ...`);

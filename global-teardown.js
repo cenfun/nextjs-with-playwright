@@ -5,13 +5,22 @@ import { fileURLToPath } from 'url';
 import EC from 'eight-colors';
 import { addCoverageReport } from 'monocart-reporter';
 
+
 const globalTeardown = async (config) => {
     console.log('globalTeardown ...');
 
-    const baseURL = config.webServer.url;
-    const res = await axios.get(`${baseURL}/take-coverage`);
+    const actionUrl = `${config.webServer.url}/take-coverage`;
+    console.log(actionUrl);
+    // take coverage
+    const res = await axios.get(actionUrl);
+    console.log(res.data);
+
     const dir = res.data.dir;
-    console.log(dir);
+
+    if (!fs.existsSync(dir)) {
+        EC.logRed('not found coverage dir');
+        return;
+    }
 
     const files = fs.readdirSync(dir);
     for (const filename of files) {
@@ -24,11 +33,14 @@ const globalTeardown = async (config) => {
 
         coverageList = coverageList.filter((entry) => entry.url.includes('next/server/app'));
 
+        coverageList = coverageList.filter((entry) => !entry.url.includes('manifest.js'));
+        coverageList = coverageList.filter((entry) => !entry.url.includes('take-coverage'));
+
         if (!coverageList.length) {
             continue;
         }
 
-        // console.log(coverageList.map((entry) => entry.url));
+        console.log(coverageList.map((entry) => entry.url));
 
         // attached source content
         coverageList.forEach((entry) => {
