@@ -2,26 +2,16 @@
 
 This example shows how to configure Playwright to work with Next.js.
 
-## Deploy your own
-
-Deploy the example using [Vercel](https://vercel.com?utm_source=github&utm_medium=readme&utm_campaign=next-example) or preview live with [StackBlitz](https://stackblitz.com/github/vercel/next.js/tree/canary/examples/with-playwright)
-
-[![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/clone?repository-url=https://github.com/vercel/next.js/tree/canary/examples/with-playwright&project-name=with-playwright&repository-name=with-playwright)
-
-## How to use
-
-Execute [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app) with [npm](https://docs.npmjs.com/cli/init), [Yarn](https://yarnpkg.com/lang/en/docs/cli/create/), or [pnpm](https://pnpm.io) to bootstrap the example:
-
-```bash
-npx create-next-app --example with-playwright with-playwright-app
+## Generate Coverage Report
+```sh
+npm i
+npm run test
 ```
+Coverage report will be found here: test-results/coverage/index.html
 
-```bash
-yarn create next-app --example with-playwright with-playwright-app
-```
-
-```bash
-pnpm create next-app --example with-playwright with-playwright-app
-```
-
-Deploy it to the cloud with [Vercel](https://vercel.com/new?utm_source=github&utm_medium=readme&utm_campaign=next-example) ([Documentation](https://nextjs.org/docs/deployment)).
+## Tips
+- change devtool to `source-map` in development, see [next.config.js](next.config.js)
+- run `next dev` with env `NODE_V8_COVERAGE=.v8-coverage`
+- add an api for taking v8 coverage, see [src/app/take-coverage/route.ts](src/app/take-coverage/route.ts)
+- take server side coverage manually, see [global-teardown.js](global-teardown.js)
+- take client side coverage with [e2e/fixtures.js](e2e/fixtures.js)
