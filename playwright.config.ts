@@ -13,6 +13,16 @@ const coverageReportOptions: CoverageReportOptions = {
 
     sourceFilter: (sourcePath) => {
         return sourcePath.includes('src/');
+    },
+
+    sourcePath: (fileSource) => {
+        const list = ['_N_E/', 'nextjs-with-playwright/'];
+        for (const pre of list) {
+            if (fileSource.startsWith(pre)) {
+                return fileSource.slice(pre.length);
+            }
+        }
+        return fileSource;
     }
 };
 
