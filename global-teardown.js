@@ -1,64 +1,35 @@
 import fs from 'fs';
 import path from 'path';
-import axios from 'axios';
-import { WebSocket } from 'ws';
+import CDP from 'chrome-remote-interface';
 import { fileURLToPath } from 'url';
 import EC from 'eight-colors';
 import { addCoverageReport } from 'monocart-reporter';
-
-function send(ws, command) {
-    return new Promise((resolve) => {
-
-        const callback = function(text) {
-            const response = JSON.parse(text);
-            if (response.id === command.id) {
-                ws.removeListener('message', callback);
-                resolve(response);
-            }
-        };
-
-        ws.on('message', callback);
-        ws.send(JSON.stringify(command));
-
-    });
-}
 
 const globalTeardown = async (config) => {
     console.log('globalTeardown ...');
 
     // [WebServer] the --inspect option was detected, the Next.js router server should be inspected at port 9230.
-    const res = await axios.get('http://127.0.0.1:9230/json');
-    // using first one debugger process
-    const webSocketDebuggerUrl = res.data[0].webSocketDebuggerUrl;
-    const ws = new WebSocket(webSocketDebuggerUrl);
-
-    await new Promise((resolve) => {
-        ws.once('open', resolve);
+    const client = await CDP({
+        port: 9230
     });
-    console.log(EC.magenta('webSocketDebuggerUrl'), EC.cyan(webSocketDebuggerUrl), EC.green('connected!'));
 
     // enable and start v8 coverage
-    await send(ws, {
-        id: 1,
-        method: 'Runtime.enable'
+    await client.Runtime.enable();
+
+    // write the coverage started by NODE_V8_COVERAGE to disk on demand
+    const data = await client.Runtime.evaluate({
+        expression: 'new Promise(resolve=>{ require("v8").takeCoverage(); resolve(process.env.NODE_V8_COVERAGE); })',
+        includeCommandLineAPI: true,
+        returnByValue: true,
+        awaitPromise: true
     });
 
-    //  write the coverage started by NODE_V8_COVERAGE to disk on demand
-    const data = await send(ws, {
-        id: 2,
-        method: 'Runtime.evaluate',
-        params: {
-            expression: `new Promise(resolve=>{
-                require("v8").takeCoverage();
-                resolve(process.env.NODE_V8_COVERAGE);
-            })`,
-            includeCommandLineAPI: true,
-            returnByValue: true,
-            awaitPromise: true
-        }
-    });
+    await client.Runtime.disable();
 
-    const dir = data.result.result.value;
+    // close debugger
+    await client.close();
+
+    const dir = data.result.value;
 
     if (!fs.existsSync(dir)) {
         EC.logRed('not found coverage dir');

@@ -8,9 +8,11 @@ export default function Counter() {
     useEffect(() => {
         if (count > 1) {
             console.log(1);
-        } else if (count > 10) {
-            console.log(10);
-        } else if (count > 100) {
+        }
+        if (count > 2) {
+            console.log(2);
+        }
+        if (count > 100) {
             console.log(10);
         }
     });
