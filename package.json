@@ -7,7 +7,7 @@
         "build": "next build",
         "start": "next start",
         "clean": "cross-env NODE_V8_COVERAGE=.v8-coverage node ./scripts/clean.js",
-        "test:start": "cross-env NODE_V8_COVERAGE=.v8-coverage NODE_OPTIONS=--inspect next dev",
+        "test:start": "cross-env NODE_V8_COVERAGE=.v8-coverage NODE_OPTIONS=--inspect=9229 next dev",
         "test:command": "npm run clean && npm run test:start",
         "test": "playwright test"
     },
@@ -19,14 +19,14 @@
     },
     "devDependencies": {
         "@playwright/test": "^1.41.2",
-        "@types/node": "20.11.16",
-        "@types/react": "18.2.55",
+        "@types/node": "20.11.20",
+        "@types/react": "18.2.57",
         "chrome-remote-interface": "^0.33.0",
         "cross-env": "^7.0.3",
         "eslint": "^8.56.0",
         "eslint-config-next": "^14.1.0",
         "eslint-config-plus": "^1.0.6",
-        "monocart-reporter": "^2.3.1",
+        "monocart-reporter": "^2.3.3",
         "typescript": "5.3.3"
     }
 }

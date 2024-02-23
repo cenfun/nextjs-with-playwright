@@ -53,7 +53,7 @@ const globalTeardown = async (config) => {
             continue;
         }
 
-        console.log(coverageList.map((entry) => entry.url));
+        // console.log(coverageList.map((entry) => entry.url));
 
         // attached source content
         coverageList.forEach((entry) => {
