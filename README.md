@@ -37,3 +37,6 @@ const client = await CDP({
 });
 ```
 If you are using a different port like `8112`, then the CDP port should be `8113` (8112 + 1).
+
+## If you want to use `Istanbul`, please refer to:
+- [nextjs-with-playwright-istanbul](https://github.com/cenfun/nextjs-with-playwright-istanbul)
