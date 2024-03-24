@@ -1,35 +1,20 @@
 import fs from 'fs';
 import path from 'path';
-import CDP from 'chrome-remote-interface';
 import { fileURLToPath } from 'url';
 import EC from 'eight-colors';
 import { addCoverageReport } from 'monocart-reporter';
+import { CDPClient } from 'monocart-coverage-reports';
 
 const globalTeardown = async (config) => {
     console.log('globalTeardown ...');
 
     // [WebServer] the --inspect option was detected, the Next.js router server should be inspected at port 9230.
-    const client = await CDP({
+    const client = await CDPClient({
         port: 9230
     });
 
-    // enable and start v8 coverage
-    await client.Runtime.enable();
-
-    // write the coverage started by NODE_V8_COVERAGE to disk on demand
-    const data = await client.Runtime.evaluate({
-        expression: 'new Promise(resolve=>{ require("v8").takeCoverage(); resolve(process.env.NODE_V8_COVERAGE); })',
-        includeCommandLineAPI: true,
-        returnByValue: true,
-        awaitPromise: true
-    });
-
-    await client.Runtime.disable();
-
-    // close debugger
+    const dir = await client.writeCoverage();
     await client.close();
-
-    const dir = data.result.value;
 
     if (!fs.existsSync(dir)) {
         EC.logRed('not found coverage dir');

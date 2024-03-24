@@ -20,7 +20,7 @@ The debugging port is `9229` by default
 ```sh
 "test:start": "cross-env INSTRUMENT_CODE=true NODE_OPTIONS=--inspect=9229 next dev"
 ```
-But we should use `9230` (9229 + 1) as the CDP (chrome-remote-interface) port base on the following prompt:
+But we should use `9230` (9229 + 1) as the CDP port base on the following prompt:
 ```sh
 [WebServer] Debugger listening on ws://127.0.0.1:9229/07ad38a2-2d5a-48df-a4de-07010e2d9b18
 For help, see: https://nodejs.org/en/docs/inspector
