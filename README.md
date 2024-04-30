@@ -18,7 +18,9 @@ Coverage report will be found here: `test-results/coverage/index.html`
 ### Debugging port
 The debugging port is `9229` by default
 ```sh
-"test:start": "cross-env INSTRUMENT_CODE=true NODE_OPTIONS=--inspect=9229 next dev"
+"scripts": {
+    "test:start": "cross-env NODE_V8_COVERAGE=.v8-coverage NODE_OPTIONS=--inspect=9229 next dev",
+}
 ```
 But we should use `9230` (9229 + 1) as the CDP port base on the following prompt:
 ```sh
