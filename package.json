@@ -13,19 +13,19 @@
     },
     "license": "MIT",
     "dependencies": {
-        "next": "latest",
-        "react": "^18.2.0",
-        "react-dom": "^18.2.0"
+        "next": "^14.2.4",
+        "react": "^18.3.1",
+        "react-dom": "^18.3.1"
     },
     "devDependencies": {
-        "@playwright/test": "^1.42.1",
-        "@types/node": "20.11.30",
-        "@types/react": "18.2.69",
+        "@playwright/test": "^1.44.1",
+        "@types/node": "^20.14.7",
+        "@types/react": "^18.3.3",
         "cross-env": "^7.0.3",
         "eslint": "^8.57.0",
-        "eslint-config-next": "^14.1.4",
+        "eslint-config-next": "^14.2.4",
         "eslint-config-plus": "^1.0.6",
-        "monocart-reporter": "^2.4.5",
-        "typescript": "5.4.3"
+        "monocart-reporter": "^2.5.0",
+        "typescript": "^5.5.2"
     }
 }

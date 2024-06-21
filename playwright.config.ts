@@ -12,7 +12,7 @@ const coverageReportOptions: CoverageReportOptions = {
     },
 
     sourceFilter: (sourcePath) => {
-        return sourcePath.includes('src/');
+        return sourcePath.includes('src/app');
     },
 
     sourcePath: (fileSource) => {
