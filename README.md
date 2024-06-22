@@ -6,8 +6,23 @@ This example shows how to configure Playwright to work with Next.js.
 ```sh
 npm i
 npm run test
+
+[MCR] Next.js V8 Coverage Report
+┌────────────────┬──────────┬────────────┬──────────┬───────────┬──────────┬─────────────────┐
+│ Name           │    Bytes │ Statements │ Branches │ Functions │    Lines │ Uncovered Lines │
+├────────────────┼──────────┼────────────┼──────────┼───────────┼──────────┼─────────────────┤
+│ src/app        │          │            │          │           │          │                 │
+│ ├ counter.tsx  │  86.80 % │    81.82 % │  66.67 % │  100.00 % │  73.91 % │ 12-17           │
+│ ├ layout.tsx   │ 100.00 % │   100.00 % │          │  100.00 % │ 100.00 % │                 │
+│ ├ page.tsx     │ 100.00 % │   100.00 % │          │  100.00 % │ 100.00 % │                 │
+│ └ about        │          │            │          │           │          │                 │
+│   ├ actions.ts │  91.86 % │    87.50 % │  50.00 % │  100.00 % │  91.67 % │ 8               │
+│   └ page.tsx   │ 100.00 % │   100.00 % │          │  100.00 % │ 100.00 % │                 │
+├────────────────┼──────────┼────────────┼──────────┼───────────┼──────────┼─────────────────┤
+│ Summary        │  94.14 % │    88.46 % │  62.50 % │  100.00 % │  90.79 % │                 │
+└────────────────┴──────────┴────────────┴──────────┴───────────┴──────────┴─────────────────┘
 ```
-Coverage report will be found here: `test-results/coverage/index.html`
+HTML coverage report will be found here: `test-results/coverage/index.html`
 
 ## Tips
 - change devtool to `source-map` in development, see [next.config.js](next.config.js)
