@@ -8,4 +8,7 @@ test('should count by click', async ({ page }) => {
 
     await page.getByText('Click me').click();
     await expect(page.locator('.count')).toContainText('You clicked 2 times');
+
+    //await page.getByText('Click me').click();
+    //await expect(page.locator('.count')).toContainText('You clicked 3 times');
 });

@@ -6,25 +6,27 @@
         "dev": "next dev",
         "build": "next build",
         "start": "next start",
-        "clean": "cross-env NODE_V8_COVERAGE=.v8-coverage node ./scripts/clean.js",
+        "test:clean": "rimraf .v8-coverage",
         "test:start": "cross-env NODE_V8_COVERAGE=.v8-coverage NODE_OPTIONS=--inspect=9229 next dev",
-        "test:command": "npm run clean && npm run test:start",
+        "test:command": "npm run test:clean && npm run test:start",
         "test": "playwright test"
     },
     "license": "MIT",
     "dependencies": {
-        "next": "^14.2.5",
+        "next": "^14.2.11",
         "react": "^18.3.1",
         "react-dom": "^18.3.1"
     },
     "devDependencies": {
-        "@playwright/test": "^1.46.0",
-        "@types/node": "^22.1.0",
-        "@types/react": "^18.3.3",
+        "@playwright/test": "^1.47.1",
+        "@types/node": "^22.5.5",
+        "@types/react": "^18.3.5",
         "cross-env": "^7.0.3",
-        "eslint": "^9.8.0",
+        "eslint": "^9.10.0",
         "eslint-config-plus": "^2.0.2",
-        "monocart-reporter": "^2.6.4",
-        "typescript": "^5.5.4"
+        "monocart-coverage-reports": "^2.10.5",
+        "monocart-reporter": "^2.8.0",
+        "rimraf": "^6.0.1",
+        "typescript": "^5.6.2"
     }
 }
