@@ -3,27 +3,31 @@ import { defineConfig, devices } from '@playwright/test';
 import { CoverageReportOptions } from 'monocart-reporter';
 
 const coverageReportOptions: CoverageReportOptions = {
-    // logging: 'debug',
+    logging: 'debug',
     name: 'Next.js V8 Coverage Report',
 
-    entryFilter: (entry) => {
+    entryFilter: {
+
+        "**/node_modules/**": false,
+
         // both client side and server side
-        return entry.url.includes('next/static/chunks') || entry.url.includes('next/server/app');
+        "**/static/chunks/app/**": true,
+        '**/server/app/**': true
     },
 
-    sourceFilter: (sourcePath) => {
-        return sourcePath.includes('src/app');
-    },
+    // sourceFilter: {
+    //     "**/src/app/**": true
+    // },
 
-    sourcePath: (fileSource) => {
-        const list = ['_N_E/', 'nextjs-with-playwright/'];
-        for (const pre of list) {
-            if (fileSource.startsWith(pre)) {
-                return fileSource.slice(pre.length);
-            }
-        }
-        return fileSource;
-    },
+    // sourcePath: (fileSource) => {
+    //     const list = ['_N_E/', 'nextjs-with-playwright/'];
+    //     for (const pre of list) {
+    //         if (fileSource.startsWith(pre)) {
+    //             return fileSource.slice(pre.length);
+    //         }
+    //     }
+    //     return fileSource;
+    // },
 
     reports: ['v8', 'console-details']
 };
@@ -68,49 +72,49 @@ export default defineConfig({
     ],
 
     use: {
-    // Use baseURL so to make navigations relative.
-    // More information: https://playwright.dev/docs/api/class-testoptions#test-options-base-url
+        // Use baseURL so to make navigations relative.
+        // More information: https://playwright.dev/docs/api/class-testoptions#test-options-base-url
         baseURL,
 
         // Retry a test if its failing with enabled tracing. This allows you to analyze the DOM, console logs, network traffic etc.
         // More information: https://playwright.dev/docs/trace-viewer
         trace: 'retry-with-trace'
 
-    // All available context options: https://playwright.dev/docs/api/class-browser#browser-new-context
-    // contextOptions: {
-    //   ignoreHTTPSErrors: true,
-    // },
+        // All available context options: https://playwright.dev/docs/api/class-browser#browser-new-context
+        // contextOptions: {
+        //   ignoreHTTPSErrors: true,
+        // },
     },
 
     projects: [
         {
             name: 'Desktop Chrome',
             use: {
-                ... devices['Desktop Chrome']
+                ...devices['Desktop Chrome']
             }
         }
-    // {
-    //   name: 'Desktop Firefox',
-    //   use: {
-    //     ...devices['Desktop Firefox'],
-    //   },
-    // },
-    // {
-    //   name: 'Desktop Safari',
-    //   use: {
-    //     ...devices['Desktop Safari'],
-    //   },
-    // },
-    // Test against mobile viewports.
-    // {
-    //   name: 'Mobile Chrome',
-    //   use: {
-    //     ...devices['Pixel 5'],
-    //   },
-    // },
-    // {
-    //   name: 'Mobile Safari',
-    //   use: devices['iPhone 12'],
-    // },
+        // {
+        //   name: 'Desktop Firefox',
+        //   use: {
+        //     ...devices['Desktop Firefox'],
+        //   },
+        // },
+        // {
+        //   name: 'Desktop Safari',
+        //   use: {
+        //     ...devices['Desktop Safari'],
+        //   },
+        // },
+        // Test against mobile viewports.
+        // {
+        //   name: 'Mobile Chrome',
+        //   use: {
+        //     ...devices['Pixel 5'],
+        //   },
+        // },
+        // {
+        //   name: 'Mobile Safari',
+        //   use: devices['iPhone 12'],
+        // },
     ]
 });

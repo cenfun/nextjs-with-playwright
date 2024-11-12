@@ -29,16 +29,17 @@ const globalTeardown = async (config) => {
 
         // filter node internal files
         coverageList = coverageList.filter((entry) => entry.url && entry.url.startsWith('file:'));
+        coverageList = coverageList.filter((entry) => !entry.url.includes('node_modules'));
 
-        coverageList = coverageList.filter((entry) => entry.url.includes('next/server/app'));
-
-        coverageList = coverageList.filter((entry) => !entry.url.includes('manifest.js'));
+        // coverageList = coverageList.filter((entry) => entry.url.includes('next/server/app'));
+        // coverageList = coverageList.filter((entry) => !entry.url.includes('manifest.js'));
 
         if (!coverageList.length) {
+            // console.log(`not found coverage entries: ${filename}`);
             continue;
         }
 
-        // console.log(coverageList.map((entry) => entry.url));
+        // console.log('server entries', coverageList.map((entry) => entry.url));
 
         // attached source content
         coverageList.forEach((entry) => {
@@ -49,6 +50,8 @@ const globalTeardown = async (config) => {
                 EC.logRed('not found file', filePath);
             }
         });
+
+        // console.log('server entries', coverageList.map((entry) => entry.url));
 
         // there is no test info on teardown, just mock one with required config
         const mockTestInfo = {
