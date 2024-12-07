@@ -30,10 +30,6 @@ const globalTeardown = async (config) => {
         // filter node internal files
         coverageList = coverageList.filter((entry) => entry.url && entry.url.startsWith('file:'));
 
-        coverageList = coverageList.filter((entry) => entry.url.includes('next/server/app'));
-
-        coverageList = coverageList.filter((entry) => !entry.url.includes('manifest.js'));
-
         if (!coverageList.length) {
             continue;
         }

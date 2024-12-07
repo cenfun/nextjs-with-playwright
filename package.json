@@ -3,30 +3,30 @@
     "private": true,
     "type": "module",
     "scripts": {
-        "dev": "next dev",
+        "dev": "next dev --turbopack",
         "build": "next build",
         "start": "next start",
         "test:clean": "rimraf .v8-coverage",
-        "test:start": "cross-env NODE_V8_COVERAGE=.v8-coverage NODE_OPTIONS=--inspect=9229 next dev",
+        "test:start": "cross-env NODE_V8_COVERAGE=.v8-coverage NODE_OPTIONS=--inspect=9229 next dev --turbopack",
         "test:command": "npm run test:clean && npm run test:start",
         "test": "playwright test"
     },
     "license": "MIT",
     "dependencies": {
-        "next": "^14.2.11",
-        "react": "^18.3.1",
-        "react-dom": "^18.3.1"
+        "next": "^15.0.4",
+        "react": "^19.0.0",
+        "react-dom": "^19.0.0"
     },
     "devDependencies": {
-        "@playwright/test": "^1.47.1",
-        "@types/node": "^22.5.5",
-        "@types/react": "^18.3.6",
+        "@playwright/test": "^1.49.0",
+        "@types/node": "^22.10.1",
+        "@types/react": "^19.0.1",
         "cross-env": "^7.0.3",
-        "eslint": "^9.10.0",
+        "eslint": "^9.16.0",
         "eslint-config-plus": "^2.0.2",
-        "monocart-coverage-reports": "^2.10.8",
-        "monocart-reporter": "^2.8.0",
+        "monocart-coverage-reports": "^2.11.3",
+        "monocart-reporter": "^2.9.12",
         "rimraf": "^6.0.1",
-        "typescript": "^5.6.2"
+        "typescript": "^5.7.2"
     }
 }

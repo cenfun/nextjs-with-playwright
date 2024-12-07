@@ -1,17 +1,11 @@
+
 const nextConfig = {
 
-    webpack: (config) => {
-
-        if (process.env.NODE_V8_COVERAGE) {
-            Object.defineProperty(config, 'devtool', {
-                get() {
-                    return 'source-map';
-                },
-                set() {}
-            });
+    experimental: {
+        // https://nextjs.org/docs/app/api-reference/next-config-js/turbo
+        turbo: {
+            treeShaking: !process.env.NODE_V8_COVERAGE
         }
-
-        return config;
     }
 };
 
