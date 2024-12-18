@@ -1,3 +1,7 @@
+> [!NOTE]  
+> [Discuss working with Next.js 15](https://github.com/cenfun/monocart-reporter/issues/161)
+
+
 # Next.js + Playwright
 
 This example shows how to configure Playwright to work with Next.js.
