@@ -8,13 +8,11 @@ export default {
         'node_modules': false,
         'turbopack': false,
 
-        '/static/chunks/node_modules': false,
         '/static/chunks/src': false,
-
         '/static/chunks/': true,
 
         // server side
-        'root of the server': false,
+        '[root-of-the-server]': false,
         '/server/chunks/': true
 
     },
@@ -22,7 +20,8 @@ export default {
     sourceFilter: {
         'node_modules': false,
         'turbopack': false,
-        '/proxy.js': false,
+        '.next-internal': false,
+        '/proxy.mjs': false,
         '*': true
     },
 
